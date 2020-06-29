@@ -22,26 +22,60 @@ public class RegisterInDB {
 
     public void registerFilm(Film film, Actor[] actors) {
         ArrayList<Integer> indexs = new ArrayList<>();
-        
+        int indexFilm = -1;
+
         boolean isRegistered = verify.verifyFilm(film.getTitle());
 
         if (!isRegistered) {
             try {
                 // Verificar y registrar todos los actores
-                for (Actor actor: actors) {
-                    int index = registerActor(actor);
-                    if(index != -1){
-                        indexs.add(index);
+                for (Actor actor : actors) {
+                    int indexActor = registerActor(actor);
+                    if (indexActor != -1) {
+                        indexs.add(indexActor);
                     }
                 }
-                
+                // Registrar la pelicula
                 PreparedStatement statement = db._connection.prepareStatement("INSERT INTO film(title, language_id, rental_duration, rental_rate, replacement_cost) VALUES (?,?,?,?,?);");
                 statement.setString(1, film.getTitle());
+                statement.setInt(2, film.getLanguage());
+                statement.setInt(3, film.getRentalDuration());
+                statement.setDouble(4, film.getRentalRate());
+                statement.setDouble(5, film.getReplacementCost());
+
+                int rowsUpdated = statement.executeUpdate();
+
+                // Se busca el ultimo id de la pelicula registrada
+                statement = db._connection.prepareStatement("SELECT film_id FROM film ORDER BY(film_id) DESC LIMIT 1;");
+                ResultSet resultSet = statement.executeQuery();
+
+                // Guardamos el indice en el arreglo de indices
+                while (resultSet.next()) {
+                    indexFilm = resultSet.getInt("film_id");
+                }
+
+                // Agregar los actores a la pelicula
+                registerActorsInFilm(indexs, indexFilm);
+
             } catch (SQLException ex) {
                 System.out.println(ex.getErrorCode());
             }
         }
 
+    }
+
+    public void registerActorsInFilm(ArrayList<Integer> idxActors, int idxFilm) {
+        for (Integer idxActor : idxActors) {
+            try {
+                PreparedStatement statement = db._connection.prepareStatement("INSERT INTO film_actor(actor_id, film_id) VALUES(?,?);");
+                statement.setInt(idxActor, idxFilm);
+
+                int rowsUpdated = statement.executeUpdate();
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getErrorCode());
+            }
+        }
     }
 
     public int registerActor(Actor actor) {
