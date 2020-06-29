@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Formulario de mi Servlet</title>
+</head>
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario de mi Servlet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+    <!-- <form name="form1" action="/Tarea02/Servlet" method="POST">
+            Usuario : <input type="text" name="usuario"/>
+            <br/>
+            Contrasenia: <input type="password" name="contrasenia" />
+            <br/>
+            
+            <button type="submit" class="btn btn-primary" >Button B4</button>
+        </form> 
+</body>
+
+</html> -->
+
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="#">Sakila DB</a>
+    </nav>
+    <div class="row">
+        <div class="col-6 p-1">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Register film</h5>
+                    <hr>
+                    <form name="form1" action="/Tarea02/Servlet" method="POST">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="Write the title">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Rental Duration</label>
+                            <input type="number" class="form-control" id="rental_duration"
+                                placeholder="Define the rental duration" min="0" max="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Rental Rate</label>
+                            <input type="number" class="form-control" id="rental_rate" placeholder="Define the rental rate"
+                                step="0.5" min="0" max="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Replacement Cost</label>
+                            <input type="number" class="form-control" id="replacement_cost"
+                                placeholder="Define the replacement cost" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select class="form-control" id="language">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6 p-1">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Register actors</h5>
+                    <hr>
+                    <form name="form1" action="/Tarea02/Servlet" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">First Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">Last Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">First Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">Last Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">First Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">Last Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">First Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">Last Name:</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary" >Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
