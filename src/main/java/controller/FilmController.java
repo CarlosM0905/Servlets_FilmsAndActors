@@ -5,10 +5,17 @@
  */
 package controller;
 
+import database.RegisterInDB;
+import model.Actor;
+import model.Film;
+
 /**
  *
  * @author Carlos Rodriguez
  */
-public class FilmController {
+public class FilmController extends RegisterInDB{
     
+    public void registerFilmInDB(Film film, Actor[] actors){
+       super.registerFilm(film, actors);
+    }
 }

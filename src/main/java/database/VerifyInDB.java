@@ -89,13 +89,4 @@ public class VerifyInDB {
             return false;
         }
     }
-
-    public static void main(String[] args) {
-        VerifyInDB dbController = new VerifyInDB();
-
-        System.out.println("Resultado" + dbController.verifyFilm("Academy Dinos"));
-        System.out.println("Resultado" + dbController.verifyActor("",""));
-        System.out.println("Resultado: " + dbController.verifyCategory(""));
-        System.out.println("Resultado: " + dbController.verifyLanguaje(""));
-    }
 }
