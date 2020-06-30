@@ -3,19 +3,17 @@ package model;
 
 public class Film {
     private String title;
-    private int language;
+    private String language;
     private int rentalDuration;
     private double rentalRate;
     private double replacementCost;
-    private int category;
 
-    public Film(String title, int language, int rentalDuration, double rentalRate, double replacementCost, int category) {
+    public Film(String title, String language, int rentalDuration, double rentalRate, double replacementCost) {
         this.title = title;
         this.language = language;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
         this.replacementCost = replacementCost;
-        this.category = category;
     }
 
     public String getTitle() {
@@ -26,11 +24,11 @@ public class Film {
         this.title = title;
     }
 
-    public int getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(int language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
@@ -56,14 +54,6 @@ public class Film {
 
     public void setReplacementCost(double replacementCost) {
         this.replacementCost = replacementCost;
-    }
-
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(int category) {
-        this.category = category;
     }
 
 }

@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Actor;
 import model.Film;
 
@@ -23,7 +21,8 @@ public class RegisterInDB {
     public void registerFilm(Film film, Actor[] actors) {
         ArrayList<Integer> indexs = new ArrayList<>();
         int indexFilm = -1;
-
+        int indexLanguage = -1;
+        
         boolean isRegistered = verify.verifyFilm(film.getTitle());
 
         if (!isRegistered) {
@@ -35,10 +34,42 @@ public class RegisterInDB {
                         indexs.add(indexActor);
                     }
                 }
+                
+                String language = film.getLanguage();
+                
+                boolean isLanguageRegistered = verify.verifyLanguaje(language);
+                
+                if(!isLanguageRegistered){
+                    // Registrar el lenguaje
+                    PreparedStatement statement = db._connection.prepareStatement("INSERT INTO language(name) VALUES (?)");
+                    statement.setString(1, language);
+                    
+                    int rowsUpdated = statement.executeUpdate();
+                    
+                    // Se busca el ultimo id del idioma registrada
+                    statement = db._connection.prepareStatement("SELECT language_id FROM language ORDER BY(language_id) DESC LIMIT 1;");
+                    ResultSet resultSet = statement.executeQuery();
+                    
+                    while(resultSet.next()){
+                        indexLanguage = resultSet.getInt("language_id");
+                    }
+                }
+                else{
+                    // Se busca el ultimo id del idioma registrada
+                    PreparedStatement statement = db._connection.prepareStatement("SELECT language_id FROM language WHERE name=?;");
+                    statement.setString(1, language);
+                    
+                    ResultSet resultSet = statement.executeQuery();
+                    
+                    while(resultSet.next()){
+                        indexLanguage = resultSet.getInt("language_id");
+                    }                
+                }
+                
                 // Registrar la pelicula
                 PreparedStatement statement = db._connection.prepareStatement("INSERT INTO film(title, language_id, rental_duration, rental_rate, replacement_cost) VALUES (?,?,?,?,?);");
                 statement.setString(1, film.getTitle());
-                statement.setInt(2, film.getLanguage());
+                statement.setInt(2, indexLanguage);
                 statement.setInt(3, film.getRentalDuration());
                 statement.setDouble(4, film.getRentalRate());
                 statement.setDouble(5, film.getReplacementCost());
